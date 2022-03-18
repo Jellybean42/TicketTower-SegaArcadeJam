@@ -35,13 +35,13 @@ public class BrickPoker : MonoBehaviour
             //Debug.DrawRay(transform.position, new Vector3(0, transform.position.y, 0) - transform.position, Color.magenta, 10f);
         }
 
-        if (transform.localPosition.x > 1.75f)
+        if (transform.localPosition.x > 1.25f)
         {
-            transform.localPosition = new Vector3(1.5f, transform.localPosition.y, -3);
+            transform.localPosition = new Vector3(1.25f, transform.localPosition.y, -3);
         }
-        if (transform.localPosition.x < -1.75f)
+        if (transform.localPosition.x < -1.25f)
         {
-            transform.localPosition = new Vector3(-1.5f, transform.localPosition.y, -3);
+            transform.localPosition = new Vector3(-1.25f, transform.localPosition.y, -3);
         }
 
         if (transform.localPosition.y > 12f)

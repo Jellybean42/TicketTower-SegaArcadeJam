@@ -32,14 +32,14 @@ public class TopBrick : MonoBehaviour
         EndUI[0].SetActive(false);
         EndUI[1].SetActive(true);
         
-        if(score>149)
+        if(score>299)
         {
             EndUI[3].GetComponent<Text>().text = "BIG FUCKING TICKETS BONUS"; //Name WIP
             EndUI[2].GetComponent<Text>().text = (100+score).ToString();
         }
         else
         {
-            EndUI[3].GetComponent<Text>().text = (150-score).ToString() + " Points away from the big bonus";
+            EndUI[3].GetComponent<Text>().text = (300-score).ToString() + " Points away from the big bonus";
             EndUI[2].GetComponent<Text>().text = (score).ToString();
         }
         if(gM.credits > 0)
