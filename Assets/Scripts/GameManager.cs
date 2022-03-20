@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public int bricksRemoved = 0;
     public int credits = 0;
     public float scoreTotal = 0;
     public Text scoreText;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseScore(float score)
     {
+        bricksRemoved++;
         scoreTotal += score;
     }
 

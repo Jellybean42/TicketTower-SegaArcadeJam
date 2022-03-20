@@ -27,30 +27,35 @@ public class TopBrick : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        float score = gM.scoreTotal;
-        Debug.Log("Towers fallen");
-        EndUI[0].SetActive(false);
-        EndUI[1].SetActive(true);
-        
-        if(score>299)
+        if(gameActive)
         {
-            EndUI[3].GetComponent<Text>().text = "BIG FUCKING TICKETS BONUS"; //Name WIP
-            EndUI[2].GetComponent<Text>().text = (100+score).ToString();
+            float score = gM.scoreTotal;
+            int bricks = gM.bricksRemoved;
+            Debug.Log("Towers fallen");
+            EndUI[0].SetActive(false);
+            EndUI[1].SetActive(true);
+
+            if (bricks >= 18)
+            {
+                EndUI[3].GetComponent<Text>().text = "BIG FUCKING TICKETS BONUS"; //Name WIP
+                EndUI[2].GetComponent<Text>().text = (100 + score).ToString();
+            }
+            else
+            {
+                EndUI[3].GetComponent<Text>().text = (18 - bricks).ToString() + " Bricks away from the big bonus";
+                EndUI[2].GetComponent<Text>().text = (score).ToString();
+            }
+            if (gM.credits > 0)
+            {
+                EndUI[4].GetComponent<Text>().text = "Press fire to play again!";
+            }
+            else
+            {
+                EndUI[4].GetComponent<Text>().text = "Press C to insert credit, then fire to play again";
+            }
+            gameActive = false;
+            Debug.Log(bricks);
         }
-        else
-        {
-            EndUI[3].GetComponent<Text>().text = (300-score).ToString() + " Points away from the big bonus";
-            EndUI[2].GetComponent<Text>().text = (score).ToString();
-        }
-        if(gM.credits > 0)
-        {
-            EndUI[4].GetComponent<Text>().text = "Press fire to play again!";
-        }
-        else
-        {
-            EndUI[4].GetComponent<Text>().text = "Press C to insert credit, then fire to play again";
-        }
-        gameActive = false;
-        
     }
+        
 }

@@ -6,6 +6,8 @@ public class BrickPoker : MonoBehaviour
 {
 
     RaycastHit hit;
+    float reloadTime = 0;
+    public float timeToReload = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +24,10 @@ public class BrickPoker : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        reloadTime -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Space) && reloadTime < 0)
         {
+            reloadTime = timeToReload;
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
             {
                 if(hit.transform.tag != "TopBrick")

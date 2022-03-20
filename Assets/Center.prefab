@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 704816857366237431}
-  - component: {fileID: 704816857366237432}
   m_Layer: 0
   m_Name: Center
   m_TagString: Untagged
@@ -33,18 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &704816857366237432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704816857366237433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 896a2a94b5257c54eb489e2fbadd33da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &704816858279986965
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +44,6 @@ GameObject:
   - component: {fileID: 704816858279986961}
   - component: {fileID: 704816858279986962}
   - component: {fileID: 704816858279986963}
-  - component: {fileID: 704816858279986964}
   m_Layer: 0
   m_Name: PokeyBit
   m_TagString: Untagged
@@ -141,18 +127,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &704816858279986964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704816858279986965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f9a0222b09dfca4c8c4e3d49ea83ad5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &704816858843667509
 GameObject:
   m_ObjectHideFlags: 0
