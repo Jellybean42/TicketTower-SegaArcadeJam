@@ -6,10 +6,13 @@ public class brick : MonoBehaviour
 {
     GameManager gM;
     public float value;
+    Material mat;
     // Start is called before the first frame update
     void Start()
     {
         gM = FindObjectOfType<GameManager>();
+        mat = GetComponent<Material>();
+        mat.SetTextureOffset(mat.name, Random.insideUnitCircle.normalized);
     }
 
     // Update is called once per frame
