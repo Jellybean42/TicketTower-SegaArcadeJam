@@ -7,22 +7,27 @@ public class brick : MonoBehaviour
     GameManager gM;
     public float value;
     Material mat;
+    public int family;
     // Start is called before the first frame update
     void Start()
     {
         gM = FindObjectOfType<GameManager>();
         mat = GetComponent<Material>();
-        mat.SetTextureOffset(mat.name, Random.insideUnitCircle.normalized);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(transform.position, Vector3.zero) > 50)
+
+        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), Vector3.zero) > 10)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, transform.position*2, 2f * Time.deltaTime);
+        }
+        if (Vector3.Distance(transform.position, Vector3.zero) > 50)
         {
             Destroy(gameObject);
             Debug.Log("Got a brick");
-            gM.IncreaseScore(value);
+            gM.IncreaseScore(value, family);
         }
     }
 }

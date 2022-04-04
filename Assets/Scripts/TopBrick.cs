@@ -35,16 +35,27 @@ public class TopBrick : MonoBehaviour
             EndUI[0].SetActive(false);
             EndUI[1].SetActive(true);
 
-            if (bricks >= 18)
+            if(gM.red >= 5)
             {
-                EndUI[3].GetComponent<Text>().text = "BIG FUCKING TICKETS BONUS"; //Name WIP
-                EndUI[2].GetComponent<Text>().text = (100 + score).ToString();
+                score += 15;
             }
-            else
+            if (gM.blue >= 5)
             {
-                EndUI[3].GetComponent<Text>().text = (18 - bricks).ToString() + " Bricks away from the big bonus";
-                EndUI[2].GetComponent<Text>().text = (score).ToString();
+                score += 10;
             }
+            if (gM.green >= 5)
+            {
+                score += 5;
+            }
+            if(gM.red+gM.blue+gM.green == 15)
+            {
+                score += 30;
+            }
+
+
+            EndUI[3].GetComponent<Text>().text = gM.green + "/5 Green Ghosts \n"+ gM.blue + "/5 Blue Ghosts \n"+ gM.red + "/5 Red Ghosts";
+            EndUI[2].GetComponent<Text>().text = (score).ToString();
+
             if (gM.credits > 0)
             {
                 EndUI[4].GetComponent<Text>().text = "Press fire to play again!";

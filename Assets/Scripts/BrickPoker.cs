@@ -22,6 +22,10 @@ public class BrickPoker : MonoBehaviour
         
     }
 
+    void PushBrick()
+    {
+
+    }
     private void Update()
     {
         reloadTime -= Time.deltaTime;
@@ -32,7 +36,7 @@ public class BrickPoker : MonoBehaviour
             {
                 if(hit.transform.tag != "TopBrick")
                 {
-                    hit.rigidbody.AddForce(transform.forward * 1000, ForceMode.Impulse);
+                    hit.rigidbody.AddForce(transform.forward * 60, ForceMode.Impulse);
                 }
                 
             }
