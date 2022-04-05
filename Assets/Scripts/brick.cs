@@ -8,11 +8,13 @@ public class brick : MonoBehaviour
     public float value;
     Material mat;
     public int family;
+    spawnghost ghostSpawner;
     // Start is called before the first frame update
     void Start()
     {
         gM = FindObjectOfType<GameManager>();
         mat = GetComponent<Material>();
+        ghostSpawner = FindObjectOfType<spawnghost>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class brick : MonoBehaviour
         if (Vector3.Distance(transform.position, Vector3.zero) > 50)
         {
             Destroy(gameObject);
+            ghostSpawner.SpawnGhost(family);
             Debug.Log("Got a brick");
             gM.IncreaseScore(value, family);
         }
