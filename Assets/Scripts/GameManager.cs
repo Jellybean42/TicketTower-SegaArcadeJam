@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public int blue = 0;
     public int green = 0;
     public GameObject[] EndUI;
-    bool gameActive = true;
+    public bool gameActive = true;
     Statistics _statistics;
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         {
             _statistics.RemoveCredits();
             scoreTotal = 0;
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
             gameActive = true;
         }
     }
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameActive)
         {
+            gameActive = false;
             int score = scoreTotal;
             int bricks = bricksRemoved;
             Debug.Log("Towers fallen");

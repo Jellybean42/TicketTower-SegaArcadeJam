@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class TopBrick : MonoBehaviour
 {
-    public GameObject[] EndUI;
     GameManager gM;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +20,7 @@ public class TopBrick : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        
         gM.EndGame();
     }
         
