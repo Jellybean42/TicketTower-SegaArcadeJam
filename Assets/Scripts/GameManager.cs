@@ -1,21 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public int bricksRemoved = 0;
-    public int credits = 0;
-    public float scoreTotal = 0;
+    public int scoreTotal = 0;
     public Text scoreText;
     public Text creditsText;
     public int red = 0;
     public int blue = 0;
     public int green = 0;
+
+    Statistics _statistics;
+
     // Start is called before the first frame update
     void Start()
     {
+        _statistics = FindObjectOfType<Statistics>();
         scoreText = FindObjectOfType<Text>();
     }
 
@@ -23,14 +24,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         scoreText.text = "Tickets: " + scoreTotal;
-        creditsText.text = "Credits: " + credits;
+        creditsText.text = "Credits: " + _statistics.credits;
         if (Input.GetKeyDown(KeyCode.C))
         {
             CoinUp();
         }
     }
 
-    public void IncreaseScore(float score, int familly)
+    public void IncreaseScore(int score, int familly)
     {
         bricksRemoved++;
         scoreTotal += score;
@@ -50,6 +51,11 @@ public class GameManager : MonoBehaviour
 
     public void CoinUp()
     {
-        credits++;
+        _statistics.AddCredits();
+    }
+
+    public void CoinDown()
+    {
+        _statistics.RemoveCredits();
     }
 }

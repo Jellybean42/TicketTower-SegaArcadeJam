@@ -8,19 +8,22 @@ public class TopBrick : MonoBehaviour
 {
     public GameObject[] EndUI;
     GameManager gM;
+    Statistics _statistics;
     bool gameActive = true;
     // Start is called before the first frame update
     void Start()
     {
+        _statistics = FindObjectOfType<Statistics>();
+        _statistics.GameStarted();
         gM = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!gameActive && Input.GetKeyDown(KeyCode.Space) && gM.credits > 0)
+        if (!gameActive && Input.GetKeyDown(KeyCode.Space) && _statistics.credits > 0)
         {
-            gM.credits--;
+            gM.CoinDown();
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
         }
@@ -29,7 +32,7 @@ public class TopBrick : MonoBehaviour
     {
         if(gameActive)
         {
-            float score = gM.scoreTotal;
+            int score = gM.scoreTotal;
             int bricks = gM.bricksRemoved;
             Debug.Log("Towers fallen");
             EndUI[0].SetActive(false);
@@ -56,7 +59,7 @@ public class TopBrick : MonoBehaviour
             EndUI[3].GetComponent<Text>().text = gM.green + "/5 Green Ghosts \n"+ gM.blue + "/5 Blue Ghosts \n"+ gM.red + "/5 Red Ghosts";
             EndUI[2].GetComponent<Text>().text = (score).ToString();
 
-            if (gM.credits > 0)
+            if (_statistics.credits > 0)
             {
                 EndUI[4].GetComponent<Text>().text = "Press fire to play again!";
             }
@@ -65,6 +68,7 @@ public class TopBrick : MonoBehaviour
                 EndUI[4].GetComponent<Text>().text = "Press C to insert credit, then fire to play again";
             }
             gameActive = false;
+            _statistics.GameComplete(score);
             Debug.Log(bricks);
         }
     }

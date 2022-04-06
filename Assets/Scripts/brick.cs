@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class brick : MonoBehaviour
 {
     GameManager gM;
-    public float value;
+    public int value;
     Material mat;
     public int family;
     // Start is called before the first frame update
