@@ -5,7 +5,7 @@ using UnityEngine;
 public class brick : MonoBehaviour
 {
     GameManager gM;
-    public float value;
+    public int value;
     Material mat;
     public int family;
     spawnghost ghostSpawner;
