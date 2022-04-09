@@ -16,6 +16,7 @@ public class Statistics : MonoBehaviour
     private const string HighestTicketPayoutPref = "highest_ticket_payout";
     
     private float _gameStartTime = -1;
+    private float _lastSavedTime = 0;
 
     public int credits;
     public float totalRunTime;
@@ -46,6 +47,12 @@ public class Statistics : MonoBehaviour
         _gameStartTime = Time.time;
     }
 
+    private void Update()
+    {
+        totalRunTime += Time.time - _lastSavedTime;
+        _lastSavedTime = Time.time;
+    }
+
     public void GameComplete(int ticketsPaid)
     {
         float gameLength = Time.time - _gameStartTime;
@@ -69,7 +76,7 @@ public class Statistics : MonoBehaviour
     void OnApplicationQuit()
     {
         Debug.Log("Application exited after " + Time.time + "s");
-        totalRunTime += Time.time;
+        totalRunTime += Time.time - _lastSavedTime;
         Debug.Log("Total run time: " + totalRunTime + "s");
         
         PlayerPrefs.SetInt(CreditsPref, 0);
