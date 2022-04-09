@@ -12,16 +12,18 @@ public class GameManager : MonoBehaviour
     public int scoreTotal = 0;
     public Text scoreText;
     public Text creditsText;
+    public Text statsText;
     public int red = 0;
     public int blue = 0;
     public int green = 0;
     public GameObject[] EndUI;
-    public bool gameActive = true;
+    public bool gameActive = false;
     Statistics _statistics;
     // Start is called before the first frame update
     void Start()
     {
-        scoreText = FindObjectOfType<Text>();
+        statsText = FindObjectsOfType<Text>()[0];
+        scoreText = FindObjectsOfType<Text>()[1];
         _statistics = FindObjectOfType<Statistics>();
         _statistics.GameStarted();
     }
@@ -29,12 +31,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        statsText.text = "";
         scoreText.text = "Tickets: " + scoreTotal;
         creditsText.text = "Credits: " + _statistics.credits;
 
         if (Input.GetKeyDown(KeyCode.C))
         {
             _statistics.AddCredits();
+        } 
+        
+        if (Input.GetKey(KeyCode.Period))
+        {
+            statsText.text = "Total Run Time: " + _statistics.totalRunTime.ToString("0") + " seconds\r\n" +
+                             "Total Credits Taken: " + _statistics.totalCreditsTaken + "\r\n" +
+                             "Total Plays: " + _statistics.totalPlays + "\r\n" +
+                             "Average Game Time: " + _statistics.averagePlayTime.ToString("0.0") + " seconds\r\n" +
+                             "Total Tickets Paid: " + _statistics.totalTicketsPaid + "\r\n" +
+                             "Lowest Ticket Payout: " + _statistics.lowestTicketPayout + "\r\n" +
+                             "Highest Ticket Payout: " + _statistics.highestTicketPayout + "\r\n";
         }
 
         if (!gameActive && Input.GetKeyDown(KeyCode.Space) && _statistics.credits > 0)
