@@ -72,13 +72,9 @@ public class Statistics : MonoBehaviour
             highestTicketPayout = ticketsPaid;
         }
     }
-    
-    void OnApplicationQuit()
+
+    private void SaveStats()
     {
-        Debug.Log("Application exited after " + Time.time + "s");
-        totalRunTime += Time.time - _lastSavedTime;
-        Debug.Log("Total run time: " + totalRunTime + "s");
-        
         PlayerPrefs.SetInt(CreditsPref, 0);
         PlayerPrefs.SetFloat(TotalTimePref, totalRunTime);
         PlayerPrefs.SetInt(TotalCreditsPref, totalCreditsTaken);
@@ -94,6 +90,11 @@ public class Statistics : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    void OnDestroy()
+    {
+        SaveStats();
+    }
+    
     public void AddCredits()
     {
         Debug.Log("coined up");
