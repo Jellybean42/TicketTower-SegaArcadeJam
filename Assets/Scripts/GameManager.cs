@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         {
             _statistics.RemoveCredits();
             scoreTotal = 0;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
             gameActive = true;
         }
     }
