@@ -8,10 +8,11 @@ public class BrickPoker : MonoBehaviour
     RaycastHit hit;
     float reloadTime = 0;
     public float timeToReload = 1;
+    AudioSource aS;
     // Start is called before the first frame update
     void Start()
     {
-        
+        aS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,6 +37,7 @@ public class BrickPoker : MonoBehaviour
             {
                 if(hit.transform.tag != "TopBrick")
                 {
+                    aS.Play();
                     hit.rigidbody.AddForce(transform.forward * 60, ForceMode.Impulse);
                 }
                 

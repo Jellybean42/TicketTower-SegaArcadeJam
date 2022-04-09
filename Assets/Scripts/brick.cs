@@ -9,12 +9,14 @@ public class brick : MonoBehaviour
     Material mat;
     public int family;
     spawnghost ghostSpawner;
+    AudioSource aS;
     // Start is called before the first frame update
     void Start()
     {
         gM = FindObjectOfType<GameManager>();
         mat = GetComponent<Material>();
         ghostSpawner = FindObjectOfType<spawnghost>();
+        aS = GetComponentInParent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class brick : MonoBehaviour
             ghostSpawner.SpawnGhost(family);
             Debug.Log("Got a brick");
             gM.IncreaseScore(value, family);
+            aS.Play();
         }
     }
 }
