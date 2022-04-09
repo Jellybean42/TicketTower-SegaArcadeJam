@@ -327,3 +327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   family: 0
+  ghostnoises:
+  - {fileID: 8300000, guid: ed4633f6ed625b34599a653c2d14cb99, type: 3}
+  - {fileID: 8300000, guid: 10ced8b8f065b2e409496266ce07f30a, type: 3}
+  - {fileID: 8300000, guid: d1f0ff8b54a33fa40a7afdf481ee9e69, type: 3}

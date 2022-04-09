@@ -24,11 +24,11 @@ public class camerascript : MonoBehaviour
         }
         if (gM.bricksRemoved == 10 && rotSpeed == 2f)
         {
-            rotSpeed = 3.5f;
+            rotSpeed = 3f;
         }
         if (gM.bricksRemoved == 15 && rotSpeed == 3.5f)
         {
-            rotSpeed = 5f;
+            rotSpeed = 4f;
         }
     }
 }

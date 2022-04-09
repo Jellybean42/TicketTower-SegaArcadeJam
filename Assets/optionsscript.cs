@@ -25,4 +25,9 @@ public class optionsscript : MonoBehaviour
         options.SetActive(page);
         data.SetActive(!page);
     }
+
+    public void ClearDataClick()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

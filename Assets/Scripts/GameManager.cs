@@ -16,7 +16,12 @@ public class GameManager : MonoBehaviour
     public int blue = 0;
     public int green = 0;
     public GameObject[] EndUI;
+    public GameObject OptionsUI;
+    bool options = false;
     public bool gameActive = true;
+    int blockFactor;
+    int bonusFactor;
+    float endTimer;
     Statistics _statistics;
     // Start is called before the first frame update
     void Start()
@@ -24,6 +29,8 @@ public class GameManager : MonoBehaviour
         scoreText = FindObjectOfType<Text>();
         _statistics = FindObjectOfType<Statistics>();
         _statistics.GameStarted();
+        blockFactor = (int)PlayerPrefs.GetFloat("block_factor");
+        bonusFactor = (int)PlayerPrefs.GetFloat("bonus_factor");
     }
 
     // Update is called once per frame
@@ -31,10 +38,21 @@ public class GameManager : MonoBehaviour
     {
         scoreText.text = "Tickets: " + scoreTotal;
         creditsText.text = "Credits: " + _statistics.credits;
-
+        endTimer -= Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.C))
         {
             _statistics.AddCredits();
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            options = !options;
+            OptionsUI.SetActive(options);
+
+            if(!options)
+            {
+                SceneManager.LoadScene(0);
+            }
         }
 
         if (!gameActive && Input.GetKeyDown(KeyCode.Space) && _statistics.credits > 0)
@@ -44,12 +62,17 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(1);
             gameActive = true;
         }
+
+        if (endTimer <= 0 && credits <= 0 && !gameActive)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void IncreaseScore(int score, int familly)
     {
         bricksRemoved++;
-        scoreTotal += score;
+        scoreTotal += score * blockFactor;
         if(familly == 0)
         {
             red++;
@@ -62,10 +85,13 @@ public class GameManager : MonoBehaviour
         {
             blue++;
         }
+
+        
     }
 
     public void EndGame()
     {
+        endTimer = 15;
         if (gameActive)
         {
             gameActive = false;
@@ -77,19 +103,19 @@ public class GameManager : MonoBehaviour
 
             if (red >= 5)
             {
-                score += 15;
+                score += 15*bonusFactor;
             }
             if (blue >= 5)
             {
-                score += 10;
+                score += 10 * bonusFactor;
             }
             if (green >= 5)
             {
-                score += 5;
+                score += 5 * bonusFactor;
             }
             if (red + blue + green == 15)
             {
-                score += 30;
+                score += 30 * bonusFactor;
             }
 
 
@@ -107,5 +133,6 @@ public class GameManager : MonoBehaviour
             gameActive = false;
             _statistics.GameComplete(score);
         }
+
     }
 }

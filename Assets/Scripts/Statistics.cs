@@ -66,7 +66,7 @@ public class Statistics : MonoBehaviour
         }
     }
     
-    void OnApplicationQuit()
+    void SaveStats()
     {
         Debug.Log("Application exited after " + Time.time + "s");
         totalRunTime += Time.time;
@@ -86,7 +86,10 @@ public class Statistics : MonoBehaviour
         
         PlayerPrefs.Save();
     }
-
+    private void OnDestroy()
+    {
+        SaveStats();
+    }
     public void AddCredits()
     {
         Debug.Log("coined up");

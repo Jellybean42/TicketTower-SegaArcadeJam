@@ -10,6 +10,11 @@ public class BGMScript : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         aS = GetComponent<AudioSource>();
+
+        if( GameObject.FindGameObjectsWithTag("music").Length > 1)
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame

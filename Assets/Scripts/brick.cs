@@ -10,6 +10,7 @@ public class brick : MonoBehaviour
     public int family;
     spawnghost ghostSpawner;
     AudioSource aS;
+    public AudioClip[] ghostnoises;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,7 @@ public class brick : MonoBehaviour
             ghostSpawner.SpawnGhost(family);
             Debug.Log("Got a brick");
             gM.IncreaseScore(value, family);
+            aS.clip = ghostnoises[Random.Range(0, ghostnoises.Length)];
             aS.Play();
         }
     }

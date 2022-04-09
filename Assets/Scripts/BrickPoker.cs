@@ -9,10 +9,14 @@ public class BrickPoker : MonoBehaviour
     float reloadTime = 0;
     public float timeToReload = 1;
     AudioSource aS;
+    GameManager gM;
+    public AudioClip[] hits;
+
     // Start is called before the first frame update
     void Start()
     {
         aS = GetComponent<AudioSource>();
+        gM = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -35,12 +39,13 @@ public class BrickPoker : MonoBehaviour
             reloadTime = timeToReload;
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
             {
-                if(hit.transform.tag != "TopBrick")
+                if(hit.transform.tag != "TopBrick" && gM.gameActive)
                 {
+                    aS.clip = hits[Random.Range(0, hits.Length)];
                     aS.Play();
                     hit.rigidbody.AddForce(transform.forward * 60, ForceMode.Impulse);
                 }
-                
+                Debug.Log(gM.gameActive);
             }
             //Debug.DrawRay(transform.position, new Vector3(0, transform.position.y, 0) - transform.position, Color.magenta, 10f);
         }
